@@ -8,7 +8,7 @@ def git_push():
         subprocess.run(["git", "add", "*.py"])
         # subprocess.run(["git", "add", "sub_mask_2d.py"])
         subprocess.run(["git", "add", "*.md"])
-        subprocess.run(["git", "add", "*.txt"])
+        # subprocess.run(["git", "add", "*.txt"])
         subprocess.run(["git", "commit", "-m", "updated"])
         subprocess.run(["git", "push"])
         print(f"Changes Pushed from {hostname} to GitHub")
