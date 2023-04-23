@@ -8,7 +8,11 @@ import cv2
 import cv2.aruco as aruco
 from utils import *
 
-DIR = "./dataset/"
+camera = 'camera2'   # camera2--jpg
+
+
+
+DIR = "./dataset/"+camera
 
 ARUCO_DICT = {
     "DICT_4X4_50": cv2.aruco.DICT_4X4_50,
@@ -45,7 +49,7 @@ for key, value in ARUCO_DICT.items():
     # Define the detector parameters
     # parameters = cv2.aruco.DetectorParameters_create()
 
-    files = [f for f in os.listdir(DIR) if f.endswith('.JPG') and not f.startswith('marker')]
+    files = [f for f in os.listdir(DIR) if f.endswith('.JPG') or f.endswith('.jpg') and not f.startswith('marker')]
 
     for file in tqdm.tqdm(files):
         # print(file)
@@ -53,22 +57,31 @@ for key, value in ARUCO_DICT.items():
         # Read in the image file
         img = cv2.imread(os.path.join(DIR, file))
 
-        ## read metadata from image
-        # Open image file for reading (binary mode)
-        f = open(os.path.join(DIR, file), 'rb')
 
-        # Return Exif tags
-        tags = exifread.process_file(f)
-        # print(tags['EXIF DateTimeOriginal'])
 
-        # get date and time from metadata
-        date_time = tags['EXIF DateTimeOriginal']
-        date_time = str(date_time)
-        date_time = date_time.split(' ')
-        date = date_time[0]
-        time = date_time[1]
-        # print(date)
-        # print(time)
+        if camera == 'canon':
+            ## read metadata from image
+            # Open image file for reading (binary mode)
+            f = open(os.path.join(DIR, file), 'rb')
+
+            # Return Exif tags
+            tags = exifread.process_file(f)
+            # print(tags['EXIF DateTimeOriginal'])
+
+            # get date and time from metadata
+            date_time = tags['EXIF DateTimeOriginal']
+            date_time = str(date_time)
+            date_time = date_time.split(' ')
+            date = date_time[0]
+            time = date_time[1]
+        elif camera == 'camera2':
+            # Parse date and time from string
+
+            date_, time_ = file.split("_")
+            date = f"{date_[0:4]}:{date_[4:6]}:{date_[6:8]}"
+            time = f"{time_[0:2]}:{time_[2:4]}:{time_[4:6]}"
+
+
 
         #
         # Detect ArUco markers in the image
@@ -104,7 +117,7 @@ for key, value in ARUCO_DICT.items():
             json_list.append(extracted_info)
 
 # save the list as a json file
-with open('./results/marker_detection.json', 'w') as f:
+with open(f'./results/marker_detection_{camera}.json', 'w') as f:
     json.dump(json_list, f)
 
 #

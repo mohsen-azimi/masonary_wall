@@ -4,14 +4,14 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-
+camera = 'camera2'
 
 
 # load json file from ./results/marker_detection.json
-with open('./results/marker_detection.json', 'r') as f:
+with open(f'./results/marker_detection_{camera}.json') as f:
     json_data = json.load(f)
 
-my_id = 744
+my_id = 633 # 642   #744
 temp_history = []
 temp_timeline = []
 # print(temp_history.shape)
@@ -40,7 +40,7 @@ for i in range(len(json_data)):
 
             print(time, type(time))
 
-            temp_history.append(y[0])
+            temp_history.append(x[0])
             temp_timeline.append(datetime.datetime.strptime(time, time_format))
 
 # plot the history of the marker
