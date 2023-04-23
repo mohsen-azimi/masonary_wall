@@ -10,8 +10,6 @@ from utils import *
 
 camera = 'camera2'   # camera2--jpg
 
-
-
 DIR = "./dataset/"+camera
 
 ARUCO_DICT = {
