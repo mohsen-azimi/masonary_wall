@@ -76,12 +76,12 @@ plt.show()
 # plt.imshow(segm_mask)
 # plt.show()
 
-# keep only at h=h_min: h_max, the rest is zero
-h_min, h_max = 100, 105
-segm_mask[:h_min] = 0
-segm_mask[h_max:] = 0
-plt.imshow(segm_mask)
-plt.show()
+# # keep only at h=h_min: h_max, the rest is zero
+# h_min, h_max = 100, 105
+# segm_mask[:h_min] = 0
+# segm_mask[h_max:] = 0
+# plt.imshow(segm_mask)
+# plt.show()
 
 
 
