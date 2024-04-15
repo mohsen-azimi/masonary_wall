@@ -1,15 +1,15 @@
 import subprocess
-import socket
 
+# ", "*.json", "*.txt", "*.sh", "*.yml", "*.ipynb", "*.csv", "*.tsv", "*.xlsx",
+# "*.xls", "*.pdf", "*.jpg", "*.jpeg", "*.png", "*.gif", "*.svg", "*.mp4", "*.mov",
+# "*.avi", "*.mp3", "*.wav", "*.zip", "*.tar", "*.gz", "*.7z", "*.rar", "*.bz2",
+# "*.apk", "*.exe", "*.dmg", "*.iso", "*.bin", "*.img", "*.deb", "*.rpm", "*.msi",
+# "*.jar", "*.war", "*.ear", "*.class", "*.dll", "*.so", "*.lib", "*.a", "*.o",
+# "*.obj", "*.pyc", "*.out", "*.log", "*.tmp", "*.temp", "*.bak", "*.swp", "*.swo", "*.swn", "*.swo
 def git_add_commit_push():
-    subprocess.run(["git", "add", "*.py"])
-    subprocess.run(["git", "add", "*.md"])
-    # subprocess.run(["git", "add", "*.txt"])
+    subprocess.run(["git", "add", "*.py", "*.md"])
     subprocess.run(["git", "commit", "-m", "updated"])
     subprocess.run(["git", "push", '-f'])
-    # git gc --prune=30.days.ago
-    # subprocess.run(["git", "gc", "--prune=30.days.ago"])
 
 if __name__ == '__main__':
     git_add_commit_push()
-
