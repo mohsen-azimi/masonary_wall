@@ -33,21 +33,30 @@ video_path = configs["coTracker"]["video_path"]
 mask_path = configs["coTracker"]["mask_path"]
 checkpoint_path = configs["coTracker"]["checkpoint_path"]
 output_path = configs["coTracker"]["output_path"]
+os.makedirs(output_path, exist_ok=True)
 
 
 grid_size = configs["coTracker"]["grid_size"]
 grid_query_frame = configs["coTracker"]["grid_query_frame"]
 backward_tracking = configs["coTracker"]["backward_tracking"]
 
+crop_y0 = configs["coTracker"]["crop_y0"]
+crop_y1 = configs["coTracker"]["crop_y1"]
+do_crop = True if crop_y1 != -1 else False
 
-os.makedirs(output_path, exist_ok=True)
+
+
 ##########################################
 
 video = read_video_from_path(video_path)
+if do_crop:
+    video = video[:, crop_y0:crop_y1, :, :]
 print(f"video shape: {video.shape}")
 video = torch.from_numpy(video).permute(0, 3, 1, 2)[None].float()
 
 segm_mask = np.array(Image.open(os.path.join(mask_path)))
+if do_crop:
+    segm_mask = segm_mask[crop_y0:crop_y1, :]
 plt.imshow(segm_mask)
 plt.show()
 
