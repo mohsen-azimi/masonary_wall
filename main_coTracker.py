@@ -88,9 +88,8 @@ plt.show()
 segm_mask = torch.from_numpy(segm_mask)[None, None]
 # segm_mask = None
 
-print(video.shape)
 interp_shape = (video.shape[3], video.shape[4]) if do_crop else (384, 512)  # torch.Size([1, n, C, h, w])
-
+print(interp_shape)
 
 model = CoTrackerPredictor(checkpoint=checkpoint_path, interp_shape=interp_shape)
 model = model.to(DEFAULT_DEVICE)
