@@ -103,6 +103,8 @@ pred_tracks, pred_visibility = model(
     segm_mask=segm_mask
 )
 print("computed")
+print(f"pred_tracks.shape: {pred_tracks.shape}"
+      f"pred_visibility.shape: {pred_visibility.shape}")
 
 # save a video with predicted tracks
 seq_name = video_path.split("/")[-1]
