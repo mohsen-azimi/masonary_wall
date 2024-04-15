@@ -44,8 +44,8 @@ crop_frame_y0 = configs["coTracker"]["crop_frame_y0"]
 crop_frame_y1 = configs["coTracker"]["crop_frame_y1"]
 do_crop = True if crop_frame_y1 != -1 else False
 
-mask_strip_y0 = configs["coTracker"]["mask_dy0"]
-mask_strip_y1 = configs["coTracker"]["mask_dy1"]
+mask_strip_y0 = configs["coTracker"]["mask_strip_y0"]
+mask_strip_y1 = configs["coTracker"]["mask_strip_y0"]
 cut_strip = True if mask_strip_y1 != -1 else False
 
 
