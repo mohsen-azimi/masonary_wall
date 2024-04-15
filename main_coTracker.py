@@ -27,7 +27,7 @@ print(f"Using device: {DEFAULT_DEVICE}")
 
 # read the config yaml file
 configs = yaml.safe_load(open("configs.yaml"))
-print(configs)
+print(configs["coTracker"])
 
 video_path = configs["coTracker"]["video_path"]
 mask_path = configs["coTracker"]["mask_path"]
