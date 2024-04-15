@@ -88,6 +88,7 @@ plt.show()
 segm_mask = torch.from_numpy(segm_mask)[None, None]
 # segm_mask = None
 
+print(video.shape)
 interp_shape = (video.shape[2], video.shape[3]) if do_crop else (384, 512)
 
 

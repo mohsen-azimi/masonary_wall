@@ -17,7 +17,7 @@ from cotracker.models.build_cotracker import (
 
 class CoTrackerPredictor(torch.nn.Module):
     def __init__(
-        self, checkpoint="cotracker/checkpoints/cotracker_stride_4_wind_8.pth",
+        self, checkpoint="./checkpoints/cotracker_stride_4_wind_8.pth",
         interp_shape=(384, 512),
     ):
         super().__init__()
