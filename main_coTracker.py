@@ -68,6 +68,7 @@ segm_mask = np.array(Image.open(os.path.join(mask_path)))
 # plt.imshow(segm_mask)
 # plt.show()
 if cut_strip:
+    print(f"cutting the strip: {mask_strip_y0} - {mask_strip_y1}")
     segm_mask[:mask_strip_y0] = 0
     segm_mask[mask_strip_y1:] = 0
     plt.imshow(segm_mask)
