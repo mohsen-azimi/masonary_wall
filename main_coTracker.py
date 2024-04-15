@@ -45,7 +45,7 @@ crop_frame_y1 = configs["coTracker"]["crop_frame_y1"]
 do_crop = True if crop_frame_y1 != -1 else False
 
 mask_strip_y0 = configs["coTracker"]["mask_strip_y0"]
-mask_strip_y1 = configs["coTracker"]["mask_strip_y0"]
+mask_strip_y1 = configs["coTracker"]["mask_strip_y1"]
 cut_strip = True if mask_strip_y1 != -1 else False
 
 
@@ -60,7 +60,6 @@ video = torch.from_numpy(video).permute(0, 3, 1, 2)[None].float()
 
 segm_mask = np.array(Image.open(os.path.join(mask_path)))
 
-print(cut_strip)
 if cut_strip:
     print(f"cutting the strip: {mask_strip_y0} - {mask_strip_y1}")
     segm_mask[:mask_strip_y0] = 0
