@@ -68,7 +68,10 @@ segm_mask = np.array(Image.open(os.path.join(mask_path)))
 # plt.imshow(segm_mask)
 # plt.show()
 if cut_strip:
-    segm_mask = segm_mask[mask_strip_y0:mask_strip_y1, :]
+    segm_mask[:mask_strip_y0] = 0
+    segm_mask[mask_strip_y1:] = 0
+    plt.imshow(segm_mask)
+    plt.show()
 if do_crop:
     segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, :]
 plt.imshow(segm_mask)
