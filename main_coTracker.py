@@ -40,9 +40,13 @@ grid_size = configs["coTracker"]["grid_size"]
 grid_query_frame = configs["coTracker"]["grid_query_frame"]
 backward_tracking = configs["coTracker"]["backward_tracking"]
 
-crop_y0 = configs["coTracker"]["crop_y0"]
-crop_y1 = configs["coTracker"]["crop_y1"]
-do_crop = True if crop_y1 != -1 else False
+crop_frame_y0 = configs["coTracker"]["crop_frame_y0"]
+crop_frame_y1 = configs["coTracker"]["crop_frame_y1"]
+do_crop = True if crop_frame_y1 != -1 else False
+
+mask_strip_y0 = configs["coTracker"]["mask_dy0"]
+mask_strip_y1 = configs["coTracker"]["mask_dy1"]
+cut_strip = True if mask_strip_y1 != -1 else False
 
 
 
@@ -50,13 +54,23 @@ do_crop = True if crop_y1 != -1 else False
 
 video = read_video_from_path(video_path)
 if do_crop:
-    video = video[:, crop_y0:crop_y1, :, :]
+    video = video[:, crop_frame_y0:crop_frame_y1, :, :]
 print(f"video shape: {video.shape}")
 video = torch.from_numpy(video).permute(0, 3, 1, 2)[None].float()
 
 segm_mask = np.array(Image.open(os.path.join(mask_path)))
+
+
+# # keep only at h=h_min: h_max, the rest is zero
+# h_min, h_max = 100, 105
+# segm_mask[:h_min] = 0
+# segm_mask[h_max:] = 0
+# plt.imshow(segm_mask)
+# plt.show()
+if cut_strip:
+    segm_mask = segm_mask[mask_strip_y0:mask_strip_y1, :]
 if do_crop:
-    segm_mask = segm_mask[crop_y0:crop_y1, :]
+    segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, :]
 plt.imshow(segm_mask)
 plt.show()
 
@@ -76,12 +90,6 @@ plt.show()
 # plt.imshow(segm_mask)
 # plt.show()
 
-# # keep only at h=h_min: h_max, the rest is zero
-# h_min, h_max = 100, 105
-# segm_mask[:h_min] = 0
-# segm_mask[h_max:] = 0
-# plt.imshow(segm_mask)
-# plt.show()
 
 
 
