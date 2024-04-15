@@ -60,9 +60,6 @@ video = torch.from_numpy(video).permute(0, 3, 1, 2)[None].float()
 
 segm_mask = np.array(Image.open(os.path.join(mask_path)))
 
-plt.imshow(segm_mask)
-plt.title("cut strip")
-plt.show()
 
 if cut_strip:
     print(f"cutting the strip: {mask_strip_y0} - {mask_strip_y1}")
@@ -72,6 +69,7 @@ if cut_strip:
     plt.title("cut strip")
     plt.show()
 if do_crop:
+    print(f"cropping the frame: {crop_frame_y0} - {crop_frame_y1}")
     segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, :]
 
 plt.imshow(segm_mask)
