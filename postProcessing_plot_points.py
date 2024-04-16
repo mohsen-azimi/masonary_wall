@@ -10,7 +10,7 @@ import os
 import json
 
 
-points_DIR = 'input_output/outputs/coTracker/camera2.mp4_tracks_and_visibility.npz'
+points_DIR = 'input_output/outputs/wood/N882A6_ch2_main_20221012110243_20221012110912.mp4_tracks_and_visibility.npz'
 
 
 
