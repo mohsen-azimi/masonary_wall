@@ -7,6 +7,8 @@ import subprocess
 # "*.jar", "*.war", "*.ear", "*.class", "*.dll", "*.so", "*.lib", "*.a", "*.o",
 # "*.obj", "*.pyc", "*.out", "*.log", "*.tmp", "*.temp", "*.bak", "*.swp", "*.swo", "*.swn", "*.swo
 def git_add_commit_push():
+    subprocess.run(["git", "config", "--local", "core.autocrlf", "false"]) # to avoid the warning of CRLF/LF,
+
     subprocess.run(["git", "add", "*.py", "*.md"])
     subprocess.run(["git", "commit", "-m", "updated"])
     subprocess.run(["git", "push", '-f'])
