@@ -56,9 +56,8 @@ end_frame = configs["coTracker"]["end_frame"]
 
 ##########################################
 print(print_frame_count(video_path))
-crop_roi = (crop_frame_y0,crop_frame_y1, crop_frame_x0,crop_frame_x1)
 
-video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame, crop_roi=crop_roi)
+video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame, crop_roi=(crop_frame_y0,crop_frame_y1, crop_frame_x0,crop_frame_x1))
 
 print(f"video shape (orig/trimmed): {video.shape}")
 
@@ -107,7 +106,7 @@ segm_mask = torch.from_numpy(segm_mask)[None, None]
 # segm_mask = None
 
 interp_shape = (384, 512)
-if do_cropY or do_cropX:
+if crop_frame_x1 != -1 and crop_frame_y1 != -1:
     interp_shape = (video.shape[3], video.shape[4]) # torch.Size([1, n, C, h, w])
 
 print(interp_shape)
