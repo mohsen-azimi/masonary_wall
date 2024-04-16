@@ -17,7 +17,7 @@ cv2.createTrackbar("Height", "control", box_params["height"], 2200, nothing)
 
 # Load the image frame of a video
 # video_path = 'C:\\Users\\azimi\OneDrive\Desktop\data\\vancouver_house/vancouver_house.mp4'
-video_path = './inputs\camera2/camera2.mp4'
+video_path = 'input_output/inputs/wood/N882A6_ch2_main_20221012110243_20221012110912.mp4'
 # # video_path = 'E:\Data\SAM_tracking\Javadinasab\PRJ-3446\Videos\S0.0.1.wmv'
 # video_path = 'C:\\Users\\azimi\OneDrive\Desktop\Zhong_dataverse_files\Videos\T242\\T242_Overview.mp4'
 cap = cv2.VideoCapture(video_path)
@@ -44,7 +44,7 @@ while True:
     cv2.rectangle(img_with_box, (x, y), (x + width, y + height), (0, 0, 255), 2)
 
     # Display the image with the box
-    tmp_resized = cv2.resize(img_with_box, (int(w * 1 / 1), int(h * 1 / 1)))
+    tmp_resized = cv2.resize(img_with_box, (int(w * 1 / 3), int(h * 1 / 3)))
     cv2.imshow("Image with Box", tmp_resized)
 
     # Break the loop when the 'Esc' key is pressed

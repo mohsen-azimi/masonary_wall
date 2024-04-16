@@ -1,17 +1,4 @@
-"""Segment_anything.ipynb    https://colab.research.google.com/drive/1VeU6OWmrWylZ3568BsUXGlO8N9Fyv0CQ
- pip install 'git+https://github.com/facebookresearch/segment-anything.git'
 
-
-
-segmentation - [np.ndarray] - the mask with (W, H) shape, and bool type, where W and H are the width and height of the original image, respectively
-area - [int] - the area of the mask in pixels
-bbox - [List[int]] - the boundary box detection in xywh format
-predicted_iou - [float] - the model's own prediction for the quality of the mask
-point_coords - [List[List[float]]] - the sampled input point that generated this mask
-stability_score - [float] - an additional measure of mask quality
-crop_box - List[int] - the crop of the image used to generate this mask in xywh format
-
-"""
 import torch  # conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
 import torchvision
 import numpy as np
@@ -23,7 +10,7 @@ import os
 import json
 
 
-points_DIR = 'C:\\Users\Mohsen\Desktop\gDriveBackup\Research\\02_SAM_Tracking\z_co-tracker\saved_videos\camera2.mp4_tracks_and_visibility.npz'
+points_DIR = 'input_output/outputs/coTracker/camera2.mp4_tracks_and_visibility.npz'
 
 
 
