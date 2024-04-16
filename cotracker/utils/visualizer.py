@@ -50,7 +50,7 @@ def read_video_from_path(path, start_frame=0, end_frame=None):
                     break
             else:
                 break
-        print(f"Total frames read: {frame_count}")
+        print(f"Total frames read: {frame_count},frames kept: {len(frames)}")
 
     finally:
         cap.release()  # Release capture resource even if an exception occurs
