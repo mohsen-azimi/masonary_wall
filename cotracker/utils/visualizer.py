@@ -36,25 +36,20 @@ import matplotlib.pyplot as plt
 def read_video_from_path(path, start_frame=0, end_frame=None):
     cap = cv2.VideoCapture(path)
     if not cap.isOpened():
-        raise ValueError("Error opening video file")  # Raise an exception instead of printing
-    try:
+        print("Error opening video file")
+    else:
         frames = []
-        frame_count = 0
+        frame_id = 0
         while cap.isOpened():
             ret, frame = cap.read()
-            if ret:
-                if frame_count >= start_frame:
-                    print(f"appending frame {frame_count}")
+            if (ret == True) and (end_frame is None or frame_id < end_frame):
+                if frame_id >= start_frame:
                     frames.append(np.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
-                frame_count += 1
-                if end_frame is not None and frame_count > end_frame:
-                    break
+
+                frame_id += 1
             else:
                 break
-        print(f"Total frames read: {frame_count},frames kept: {len(frames)}")
-
-    finally:
-        cap.release()  # Release capture resource even if an exception occurs
+        cap.release()
     return np.stack(frames)
 
 
