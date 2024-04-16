@@ -86,9 +86,11 @@ if cut_strip:
     plt.imshow(segm_mask)
     plt.title("cut strip")
     plt.show()
-if do_crop:
-    print(f"cropping the frame: {crop_frame_y0} - {crop_frame_y1}")
-    segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, :]
+if do_cropY:
+    if do_cropX:
+        segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, crop_frame_x0:crop_frame_x1]
+    else:
+        segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, :]
 
 plt.imshow(segm_mask)
 plt.title("segm_mask")
