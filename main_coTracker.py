@@ -49,19 +49,20 @@ mask_strip_y0 = configs["coTracker"]["mask_strip_y0"]
 mask_strip_y1 = configs["coTracker"]["mask_strip_y1"]
 cut_strip = True if mask_strip_y1 != -1 else False
 
-first_frame = configs["coTracker"]["first_frame"]
-last_frame = configs["coTracker"]["last_frame"]
-trim_frames = True if last_frame != -1 else False
-
-
+start_frame = configs["coTracker"]["start_frame"]
+end_frame = configs["coTracker"]["end_frame"]
+trim_frames = True if end_frame != -1 else False
 
 ##########################################
 print("--- reading the video ---")
-video = read_video_from_path(video_path)
-print(f"video shape: {video.shape}")
 
 if trim_frames:
-    video = video[first_frame:last_frame]
+    video = read_video_from_path(video_path, start_frame=end_frame, end_frame=end_frame)
+else:
+    video = read_video_from_path(video_path)
+
+print(f"video shape: {video.shape}")
+
 
 if do_crop:
     video = video[:, crop_frame_y0:crop_frame_y1, :, :]

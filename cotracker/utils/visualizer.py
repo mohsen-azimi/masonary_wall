@@ -17,16 +17,37 @@ from moviepy.editor import ImageSequenceClip
 import matplotlib.pyplot as plt
 
 
-def read_video_from_path(path):
+# def read_video_from_path(path):
+#     cap = cv2.VideoCapture(path)
+#     if not cap.isOpened():
+#         print("Error opening video file")
+#     else:
+#         frames = []
+#         while cap.isOpened():
+#             ret, frame = cap.read()
+#             if ret == True:
+#                 frames.append(np.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
+#             else:
+#                 break
+#         cap.release()
+#     return np.stack(frames)
+#
+
+def read_video_from_path(path, start_frame=0, end_frame=None):
     cap = cv2.VideoCapture(path)
     if not cap.isOpened():
         print("Error opening video file")
     else:
         frames = []
+        frame_count = 0
         while cap.isOpened():
             ret, frame = cap.read()
             if ret == True:
-                frames.append(np.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
+                if frame_count >= start_frame:
+                    frames.append(np.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
+                frame_count += 1
+                if end_frame is not None and frame_count > end_frame:
+                    break
             else:
                 break
         cap.release()
