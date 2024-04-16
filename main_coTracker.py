@@ -59,19 +59,22 @@ trim_frames = True if end_frame != -1 else False
 
 ##########################################
 print(print_frame_count(video_path))
+crop_roi = None
+if do_cropY:
+    if do_cropX:
+        crop_roi = (crop_frame_y0,crop_frame_y1, crop_frame_x0,crop_frame_x1)
+    else: # only crop Y
+        crop_roi = (crop_frame_y0,crop_frame_y1, 0,-1)
+
 if trim_frames:
-    video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame)
+
+    video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame, crop_roi=crop_roi)
 else:
-    video = read_video_from_path(video_path)
+    video = read_video_from_path(video_path,crop_roi=crop_roi)
 
 print(f"video shape (orig/trimmed): {video.shape}")
 
 
-if do_cropY:
-    if do_cropX:
-        video = video[:, crop_frame_y0:crop_frame_y1, crop_frame_x0:crop_frame_x1, :]
-    else: # only crop Y
-        video = video[:, crop_frame_y0:crop_frame_y1, :, :]
 
 
 print(f"video shape (cropped): {video.shape}")

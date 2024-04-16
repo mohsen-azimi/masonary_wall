@@ -33,7 +33,8 @@ import matplotlib.pyplot as plt
 #     return np.stack(frames)
 #
 
-def read_video_from_path(path, start_frame=0, end_frame=None):
+def read_video_from_path(path, start_frame=0, end_frame=None, crop_roi=None):
+    crop_frame_y0,crop_frame_y1, crop_frame_x0,crop_frame_x1  = crop_roi
     cap = cv2.VideoCapture(path)
     if not cap.isOpened():
         print("Error opening video file")
@@ -44,6 +45,11 @@ def read_video_from_path(path, start_frame=0, end_frame=None):
             ret, frame = cap.read()
             if (ret == True) and (end_frame is None or frame_id < end_frame):
                 if frame_id >= start_frame:
+                    print(f"frame_shape: {frame.shape}")
+                    if crop_roi is not None:
+                        frame = frame[crop_frame_y0:crop_frame_y1, crop_frame_x0:crop_frame_x1, :]
+                        print(f"frame_shape2: {frame.shape}")
+
                     frames.append(np.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
                 frame_id += 1
             else:
