@@ -25,8 +25,9 @@ DEFAULT_DEVICE = ('cuda' if torch.cuda.is_available() else
                   'cpu')
 print(f"Using device: {DEFAULT_DEVICE}")
 
+
 # read the config yaml file
-configs = yaml.safe_load(open("configs.yaml"))
+configs = yaml.safe_load(open("input_output/inputs/wood/coTracker_configs.yaml"))
 print(configs["coTracker"])
 
 video_path = configs["coTracker"]["video_path"]

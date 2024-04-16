@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-import models.psp.extractors as extractors
+import segmentation_refinement.segmentation_refinement.models.psp.extractors as extractors
 
 
 class PSPModule(nn.Module):

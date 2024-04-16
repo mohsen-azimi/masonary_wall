@@ -10,9 +10,9 @@ box_params = {"x": 100, "y": 100, "width": 50, "height": 50}
 
 # Initialize the window and trackbars
 cv2.namedWindow('control')
-cv2.createTrackbar("X", "control", box_params["x"], 1500, nothing)
+cv2.createTrackbar("X", "control", box_params["x"], 3500, nothing)
 cv2.createTrackbar("Y", "control", box_params["y"], 2500, nothing)
-cv2.createTrackbar("Width", "control", box_params["width"], 2000, nothing)
+cv2.createTrackbar("Width", "control", box_params["width"], 4000, nothing)
 cv2.createTrackbar("Height", "control", box_params["height"], 2200, nothing)
 
 # Load the image frame of a video
@@ -44,7 +44,7 @@ while True:
     cv2.rectangle(img_with_box, (x, y), (x + width, y + height), (0, 0, 255), 2)
 
     # Display the image with the box
-    tmp_resized = cv2.resize(img_with_box, (int(w * 1 / 3), int(h * 1 / 3)))
+    tmp_resized = cv2.resize(img_with_box, (int(w * 1 / 2), int(h * 1 / 2)))
     cv2.imshow("Image with Box", tmp_resized)
 
     # Break the loop when the 'Esc' key is pressed
