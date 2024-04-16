@@ -13,6 +13,7 @@ from PIL import Image
 from matplotlib import pyplot as plt
 from cotracker.utils.visualizer import Visualizer, read_video_from_path
 from cotracker.predictor import CoTrackerPredictor
+from utils import print_frame_count
 # ........................................
 from git_update import git_add_commit_push
 git_add_commit_push()
@@ -57,8 +58,7 @@ end_frame = configs["coTracker"]["end_frame"]
 trim_frames = True if end_frame != -1 else False
 
 ##########################################
-print("--- reading the video ---")
-
+print(print_frame_count(video_path))
 if trim_frames:
     video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame)
 else:

@@ -144,6 +144,13 @@ def reduce_dict(input_dict, average=True):
     return reduced_dict
 
 
+def print_frame_count(video_path):
+    cap = cv2.VideoCapture(video_path)
+    length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    cap.release()
+
+    print(f"Number of frames in the video: {length}")
+
 
 
 
