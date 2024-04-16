@@ -46,8 +46,6 @@ crop_frame_y0 = configs["coTracker"]["crop_frame_y0"]
 crop_frame_y1 = configs["coTracker"]["crop_frame_y1"]
 crop_frame_x0 = configs["coTracker"]["crop_frame_x0"]
 crop_frame_x1 = configs["coTracker"]["crop_frame_x1"]
-do_cropY = True if crop_frame_y1 != -1 else False
-do_cropX = True if crop_frame_x1 != -1 else False
 
 mask_strip_y0 = configs["coTracker"]["mask_strip_y0"]
 mask_strip_y1 = configs["coTracker"]["mask_strip_y1"]
@@ -55,22 +53,12 @@ cut_strip = True if mask_strip_y1 != -1 else False
 
 start_frame = configs["coTracker"]["start_frame"]
 end_frame = configs["coTracker"]["end_frame"]
-trim_frames = True if end_frame != -1 else False
 
 ##########################################
 print(print_frame_count(video_path))
-crop_roi = None
-if do_cropY:
-    if do_cropX:
-        crop_roi = (crop_frame_y0,crop_frame_y1, crop_frame_x0,crop_frame_x1)
-    else: # only crop Y
-        crop_roi = (crop_frame_y0,crop_frame_y1, 0,-1)
+crop_roi = (crop_frame_y0,crop_frame_y1, crop_frame_x0,crop_frame_x1)
 
-if trim_frames:
-
-    video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame, crop_roi=crop_roi)
-else:
-    video = read_video_from_path(video_path,crop_roi=crop_roi)
+video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame, crop_roi=crop_roi)
 
 print(f"video shape (orig/trimmed): {video.shape}")
 
@@ -89,11 +77,8 @@ if cut_strip:
     plt.imshow(segm_mask)
     plt.title("cut strip")
     plt.show()
-if do_cropY:
-    if do_cropX:
-        segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, crop_frame_x0:crop_frame_x1]
-    else:
-        segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, :]
+
+    segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, crop_frame_x0:crop_frame_x1]
 
 plt.imshow(segm_mask)
 plt.title("segm_mask")
