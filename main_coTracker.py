@@ -43,7 +43,10 @@ backward_tracking = configs["coTracker"]["backward_tracking"]
 
 crop_frame_y0 = configs["coTracker"]["crop_frame_y0"]
 crop_frame_y1 = configs["coTracker"]["crop_frame_y1"]
-do_crop = True if crop_frame_y1 != -1 else False
+crop_frame_x0 = configs["coTracker"]["crop_frame_x0"]
+crop_frame_x1 = configs["coTracker"]["crop_frame_x1"]
+do_cropY = True if crop_frame_y1 != -1 else False
+do_cropX = True if crop_frame_x1 != -1 else False
 
 mask_strip_y0 = configs["coTracker"]["mask_strip_y0"]
 mask_strip_y1 = configs["coTracker"]["mask_strip_y1"]
@@ -64,8 +67,12 @@ else:
 print(f"video shape: {video.shape}")
 
 
-if do_crop:
-    video = video[:, crop_frame_y0:crop_frame_y1, :, :]
+if do_cropY:
+    if do_cropX:
+        video = video[:, crop_frame_y0:crop_frame_y1, crop_frame_x0:crop_frame_x1, :]
+    else: # only crop Y
+        video = video[:, crop_frame_y0:crop_frame_y1, :, :]
+
 
 print(f"video shape (cropped): {video.shape}")
 video = torch.from_numpy(video).permute(0, 3, 1, 2)[None].float()
