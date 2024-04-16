@@ -50,6 +50,8 @@ def read_video_from_path(path, start_frame=0, end_frame=None):
                     break
             else:
                 break
+        print(f"Total frames read: {frame_count}")
+
     finally:
         cap.release()  # Release capture resource even if an exception occurs
     return np.stack(frames)
