@@ -44,6 +44,7 @@ def read_video_from_path(path, start_frame=0, end_frame=None):
             ret, frame = cap.read()
             if ret:
                 if frame_count >= start_frame:
+                    print(f"appending frame {frame_count}")
                     frames.append(np.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
                 frame_count += 1
                 if end_frame is not None and frame_count > end_frame:
