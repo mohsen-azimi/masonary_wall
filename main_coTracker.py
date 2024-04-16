@@ -49,13 +49,21 @@ mask_strip_y0 = configs["coTracker"]["mask_strip_y0"]
 mask_strip_y1 = configs["coTracker"]["mask_strip_y1"]
 cut_strip = True if mask_strip_y1 != -1 else False
 
+first_frame = configs["coTracker"]["first_frame"]
+last_frame = configs["coTracker"]["last_frame"]
+trim_frames = True if last_frame != -1 else False
+
 
 
 ##########################################
 
 video = read_video_from_path(video_path)
+if trim_frames:
+    video = video[first_frame:last_frame]
+
 if do_crop:
     video = video[:, crop_frame_y0:crop_frame_y1, :, :]
+
 print(f"video shape: {video.shape}")
 video = torch.from_numpy(video).permute(0, 3, 1, 2)[None].float()
 
