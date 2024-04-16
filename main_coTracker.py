@@ -57,12 +57,8 @@ end_frame = configs["coTracker"]["end_frame"]
 ##########################################
 print(print_frame_count(video_path))
 
-video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame, crop_roi=(crop_frame_y0,crop_frame_y1, crop_frame_x0,crop_frame_x1))
-
-print(f"video shape (orig/trimmed): {video.shape}")
-
-
-
+video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame,
+                             crop_roi=(crop_frame_y0,crop_frame_y1, crop_frame_x0,crop_frame_x1))
 
 print(f"video shape (cropped): {video.shape}")
 video = torch.from_numpy(video).permute(0, 3, 1, 2)[None].float()
@@ -109,7 +105,7 @@ interp_shape = (384, 512)
 if crop_frame_x1 != -1 and crop_frame_y1 != -1:
     interp_shape = (video.shape[3], video.shape[4]) # torch.Size([1, n, C, h, w])
 
-print(interp_shape)
+print(f"interp_shape: {interp_shape}")
 
 model = CoTrackerPredictor(checkpoint=checkpoint_path, interp_shape=interp_shape)
 model = model.to(DEFAULT_DEVICE)
