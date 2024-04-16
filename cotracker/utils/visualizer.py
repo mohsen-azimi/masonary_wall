@@ -46,8 +46,9 @@ def read_video_from_path(path, start_frame=0, end_frame=None):
                 if frame_count >= start_frame:
                     frames.append(np.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)))
                 frame_count += 1
-                if end_frame is not None and frame_count > end_frame:
-                    break
+                if end_frame is not None:
+                    if frame_count >= end_frame:
+                        break
             else:
                 break
         cap.release()
