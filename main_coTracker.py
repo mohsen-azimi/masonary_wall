@@ -60,7 +60,7 @@ trim_frames = True if end_frame != -1 else False
 print("--- reading the video ---")
 
 if trim_frames:
-    video = read_video_from_path(video_path, start_frame=end_frame, end_frame=end_frame)
+    video = read_video_from_path(video_path, start_frame=start_frame, end_frame=end_frame)
 else:
     video = read_video_from_path(video_path)
 
