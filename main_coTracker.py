@@ -28,7 +28,7 @@ print(f"Using device: {DEFAULT_DEVICE}")
 
 # read the config yaml file
 configs = yaml.safe_load(open("input_output/inputs/wood/coTracker_configs.yaml"))
-print(configs["coTracker"])
+
 
 video_path = configs["coTracker"]["video_path"]
 mask_path = configs["coTracker"]["mask_path"]
@@ -56,15 +56,17 @@ trim_frames = True if last_frame != -1 else False
 
 
 ##########################################
-
+print("--- reading the video ---")
 video = read_video_from_path(video_path)
+print(f"video shape: {video.shape}")
+
 if trim_frames:
     video = video[first_frame:last_frame]
 
 if do_crop:
     video = video[:, crop_frame_y0:crop_frame_y1, :, :]
 
-print(f"video shape: {video.shape}")
+print(f"video shape (cropped): {video.shape}")
 video = torch.from_numpy(video).permute(0, 3, 1, 2)[None].float()
 
 segm_mask = np.array(Image.open(os.path.join(mask_path)))
