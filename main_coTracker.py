@@ -64,7 +64,7 @@ if trim_frames:
 else:
     video = read_video_from_path(video_path)
 
-print(f"video shape: {video.shape}")
+print(f"video shape (orig/trimmed): {video.shape}")
 
 
 if do_cropY:
