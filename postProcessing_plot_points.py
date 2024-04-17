@@ -8,6 +8,8 @@ import sys
 import os
 
 import json
+import os
+os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 
 points_DIR = 'input_output/outputs/wood/N882A6_ch2_main_20221012110243_20221012110912.mp4_tracks_and_visibility.npz'
@@ -34,15 +36,15 @@ ax.set_xlabel("Frame")
 ax.set_ylabel("X-displacement")
 ax.grid(True)
 
-# add linear correlation to the data
+do_correction = False
+if do_correction:
+    # add linear correlation to the data
+    for track_idx in range(tracks.shape[1]):
+        end_offset = tracks[:, track_idx, 0][-1] - tracks[:, track_idx, 0][0]
+        correction_array = np.linspace(0, end_offset, num=tracks.shape[0])
+        tracks[:, track_idx, 0] = tracks[:, track_idx, 0] - correction_array
+
 for track_idx in range(tracks.shape[1]):
-    end_offset = tracks[:, track_idx, 0][-1] - tracks[:, track_idx, 0][0]
-    correction_array = np.linspace(0, end_offset, num=tracks.shape[0])
-    tracks[:, track_idx, 0] = tracks[:, track_idx, 0] - correction_array
-
-
-for track_idx in range(tracks.shape[1]):
-
     ax.plot(tracks[:, track_idx, 0]-tracks[0, track_idx, 0], label=f"Point {track_idx}", linewidth=.5)
 
 # plot the mean of all the x-displacements

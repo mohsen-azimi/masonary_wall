@@ -170,11 +170,13 @@ ax.set_xlabel("Frame")
 ax.set_ylabel("X-displacement")
 ax.grid(True)
 
+do_correction = False
+if do_correction:
 # add linear correlation to the data
-for track_idx in range(tracks.shape[1]):
-    end_offset = tracks[:, track_idx, 0][-1] - tracks[:, track_idx, 0][0]
-    correction_array = np.linspace(0, end_offset, num=tracks.shape[0])
-    tracks[:, track_idx, 0] = tracks[:, track_idx, 0] - correction_array
+    for track_idx in range(tracks.shape[1]):
+        end_offset = tracks[:, track_idx, 0][-1] - tracks[:, track_idx, 0][0]
+        correction_array = np.linspace(0, end_offset, num=tracks.shape[0])
+        tracks[:, track_idx, 0] = tracks[:, track_idx, 0] - correction_array
 
 
 for track_idx in range(tracks.shape[1]):
