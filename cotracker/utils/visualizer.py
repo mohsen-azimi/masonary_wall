@@ -43,7 +43,7 @@ def read_video_from_path(path, start_frame=0, end_frame=None, crop_roi=None):
         frame_id = 0
         while cap.isOpened():
             ret, frame = cap.read()
-            if (ret == True) and (end_frame is None or frame_id < end_frame):
+            if (ret == True) and (end_frame is -1 or frame_id < end_frame):
                 if frame_id >= start_frame:
                     # print(f"frame_shape: {frame.shape}")
                     if crop_roi is not None:
