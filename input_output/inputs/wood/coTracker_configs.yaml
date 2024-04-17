@@ -7,7 +7,7 @@ coTracker:
 
   video_path: "./input_output/inputs/wood/N882A6_ch2_main_20221012110243_20221012110912.mp4"
 
-  crop_frame_y0: 450  # 0
+  crop_frame_y0: 475  # 0
   crop_frame_y1: 560 #  -1 = till the end
   crop_frame_x0: 2950 # 0
   crop_frame_x1: 3500 #  -1 = till the end
@@ -16,7 +16,7 @@ coTracker:
   end_frame: 5010 # -1 = till the end
 
   mask_path: "./input_output/inputs/wood/N882A6_ch2_main_20221012110243_20221012110912/Frame_000000/mask_marker_big_circles.png"
-  mask_strip_y0: 460 #
+  mask_strip_y0: 480 #
   mask_strip_y1: -1 #  -1 to disable
 
   grid_size:   50 #  default=500, help="Regular grid size"
