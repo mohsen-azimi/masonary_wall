@@ -73,8 +73,7 @@ if cut_strip:
     plt.title("cut strip")
     plt.show()
 
-    segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, crop_frame_x0:crop_frame_x1]
-
+segm_mask = segm_mask[crop_frame_y0:crop_frame_y1, crop_frame_x0:crop_frame_x1]
 plt.imshow(segm_mask)
 plt.title("segm_mask")
 plt.show()
