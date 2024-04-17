@@ -13,13 +13,13 @@ coTracker:
   crop_frame_x1: 3500 #  -1 = till the end
 
   start_frame: 5000 # 0
-  end_frame: 5010 # -1 = till the end
+  end_frame: 10000 # -1 = till the end
 
   mask_path: "./input_output/inputs/wood/N882A6_ch2_main_20221012110243_20221012110912/Frame_000000/mask_marker_big_circles.png"
   mask_strip_y0: 480 #
   mask_strip_y1: -1 #  -1 to disable
 
-  grid_size:   50 #  default=500, help="Regular grid size"
+  grid_size:   31 #  default=500, help="Regular grid size"
   grid_query_frame: 0  # default=0, help="Compute dense and grid tracks starting from this frame "
   backward_tracking: False  # action="store_true", help="Compute tracks in both directions, not only forward",
 
