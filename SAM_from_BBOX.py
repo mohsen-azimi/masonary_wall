@@ -27,7 +27,7 @@ file_type = '.mp4'
 
 
 display_bbox = False
-do_refine = True
+do_refine = False
 do_crop = False
 imwrite_frame = True
 skip_frames = False
