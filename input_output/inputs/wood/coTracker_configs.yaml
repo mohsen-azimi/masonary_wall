@@ -13,7 +13,7 @@ coTracker:
   crop_frame_x1: 3500 #  -1 = till the end
 
   start_frame: 0 # 0
-  end_frame: 11000 # -1 = till the end
+  end_frame: 11710 # -1 = till the end
 
   mask_path: "./input_output/inputs/wood/N882A6_ch2_main_20221012110243_20221012110912/Frame_000000/mask_marker_big_circles.png"
   mask_strip_y0: 480 #
