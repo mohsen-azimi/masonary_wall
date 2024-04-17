@@ -158,12 +158,10 @@ np.savez(
 tracking_data = np.load(points_DIR, allow_pickle=True)
 tracks = tracking_data["tracks"]
 # multiply by an scale factor
-scale_factor = 4.6603  # pixel to mm
+scale_factor = configs["coTracker"]["calibration_scale_factor"]
 tracks = tracks*scale_factor
 visibility = tracking_data["visibility"]
 #
-print("tracks.shape:", tracks.shape)
-print("visibility.shape:", visibility.shape)
 
 # plot the x-displacement of the tracked points
 # size of figure is 10x6
