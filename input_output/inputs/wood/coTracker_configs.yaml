@@ -7,7 +7,7 @@ coTracker:
 
   video_path: "./input_output/inputs/wood/N882A6_ch2_main_20221012110243_20221012110912.mp4"
 
-  crop_frame_y0: 440  # 0
+  crop_frame_y0: 450  # 0
   crop_frame_y1: 560 #  -1 = till the end
   crop_frame_x0: 2950 # 0
   crop_frame_x1: 3500 #  -1 = till the end
@@ -19,7 +19,7 @@ coTracker:
   mask_strip_y0: 460 #
   mask_strip_y1: -1 #  -1 to disable
 
-  grid_size:   31 #  default=500, help="Regular grid size"
+  grid_size:   50 #  default=500, help="Regular grid size"
   grid_query_frame: 0  # default=0, help="Compute dense and grid tracks starting from this frame "
   backward_tracking: False  # action="store_true", help="Compute tracks in both directions, not only forward",
 
