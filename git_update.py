@@ -9,7 +9,7 @@ import subprocess
 def git_add_commit_push():
     subprocess.run(["git", "config", "--local", "core.autocrlf", "false"]) # to avoid the warning of CRLF/LF,
 
-    subprocess.run(["git", "add", "*.py", "*.md", "*.yaml"])
+    subprocess.run(["git", "add", "*.py", "*.md", "*.yaml", "*.m"])
     subprocess.run(["git", "commit", "-m", "updated"])
     subprocess.run(["git", "push", '-f'])
 

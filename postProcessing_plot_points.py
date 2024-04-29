@@ -44,6 +44,7 @@ if do_correction:
         correction_array = np.linspace(0, end_offset, num=tracks.shape[0])
         tracks[:, track_idx, 0] = tracks[:, track_idx, 0] - correction_array
 
+
 for track_idx in range(tracks.shape[1]):
     ax.plot(tracks[:, track_idx, 0]-tracks[0, track_idx, 0], label=f"Point {track_idx}", linewidth=.5)
 
